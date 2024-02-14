@@ -33,7 +33,14 @@ export class LoginComponent implements OnInit {
 
   loginFormSubmit() {
     if (this.form.valid) {
-      this.auth.login(this.form.value.email ? this.form.value.email:'', this.form.value.password ? this.form.value.password:'');
+      this.auth.login(this.form.value.email ? this.form.value.email:'', this.form.value.password ? this.form.value.password:'')
+      .subscribe((resp:any)=>{
+        console.log(resp);
+        
+      },error=>{
+        console.log(error);
+        
+      });
     }
   }
   togglePassword() {
