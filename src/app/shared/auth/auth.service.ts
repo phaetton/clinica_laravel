@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private router: Router,public http:HttpClient) {}
 
-  public login(email:string,password:string) {
+   login(email:string,password:string) {
     // localStorage.setItem('authenticated', 'true');
     // this.router.navigate([routes.adminDashboard]);
 
