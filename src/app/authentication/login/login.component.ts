@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { routes } from 'src/app/shared/routes/routes';
 
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, public router: Router) { }
   ngOnInit(): void {
     if (localStorage.getItem('authenticated')) {
       localStorage.removeItem('authenticated');
@@ -33,14 +34,23 @@ export class LoginComponent implements OnInit {
 
   loginFormSubmit() {
     if (this.form.valid) {
-      this.auth.login(this.form.value.email ? this.form.value.email:'', this.form.value.password ? this.form.value.password:'')
-      .subscribe((resp:any)=>{
-        console.log(resp);
-        
-      },error=>{
-        console.log(error);
-        
-      });
+      this.auth.login(this.form.value.email ? this.form.value.email : '', this.form.value.password ? this.form.value.password : '')
+        .subscribe((resp: any) => {
+          console.log(resp);
+          if (resp) {
+            //Si login es exitoso
+            alert("login exitoso");
+
+            this.router.navigate([routes.adminDashboard]);
+          } else {
+            //El login no es exitoso
+            alert("Usuario o contraseña son incorrectos");
+          }
+
+        }, error => {
+          console.log(error);
+
+        });
     }
   }
   togglePassword() {
