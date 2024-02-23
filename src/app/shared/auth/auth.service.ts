@@ -10,8 +10,24 @@ import { catchError, map, of } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  user: any;
+  token: any;
+  constructor(private router: Router, public http: HttpClient) {
+    this.getLocalStorage();
+  }
 
-  constructor(private router: Router, public http: HttpClient) { }
+
+  getLocalStorage() {
+    if (localStorage.getItem('token') && localStorage.getItem('user')) {
+
+      let USER = localStorage.getItem('user');
+      this.user = JSON.parse(USER ? USER : '');
+      this.token = localStorage.getItem('token');
+    } else {
+      this.token = null;
+      this.user = null;
+    }
+  }
 
   login(email: string, password: string) {
     // localStorage.setItem('authenticated', 'true');
@@ -20,13 +36,12 @@ export class AuthService {
     let URL = URL_SERVICIOS + "/auth/login";
     return this.http.post(URL, { email: email, password: password }).pipe(
       map((auth: any) => {
-        console.log(auth);
+        console.log('autorizacion', auth);
         const result = this.saveLocaStorage(auth);
         return result;
       }, catchError((error: any) => {
-        console.log(error);
+        console.log('err0r', error);
         return of(undefined);
-
       })
       ));
   }
@@ -36,7 +51,6 @@ export class AuthService {
       localStorage.setItem("token", auth.access_token);
       localStorage.setItem("user", JSON.stringify(auth.user));
       localStorage.setItem('authenticated', 'true');
-
       return true;
     }
     return false;
