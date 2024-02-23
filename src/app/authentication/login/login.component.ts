@@ -12,6 +12,7 @@ import { routes } from 'src/app/shared/routes/routes';
 export class LoginComponent implements OnInit {
   public routes = routes;
   public passwordClass = false;
+  public ERROR = false;
 
   form = new FormGroup({
     email: new FormControl('rafa@gmail.com', [
@@ -34,8 +35,10 @@ export class LoginComponent implements OnInit {
 
   loginFormSubmit() {
     if (this.form.valid) {
+      this.ERROR = false;
       this.auth.login(this.form.value.email ? this.form.value.email : '', this.form.value.password ? this.form.value.password : '')
-        .subscribe((resp: any) => {
+        .subscribe(
+          (resp: any) => {
           console.log(resp);
           if (resp) {
             //Si login es exitoso
@@ -44,13 +47,15 @@ export class LoginComponent implements OnInit {
             this.router.navigate([routes.adminDashboard]);
           } else {
             //El login no es exitoso
-            alert("Usuario o contraseña son incorrectos");
+            this.ERROR = true;
           }
 
-        }, error => {
+        }, (error:any) => {
+          this.ERROR = true;
+
           console.log(error);
 
-        });
+        })
     }
   }
   togglePassword() {
