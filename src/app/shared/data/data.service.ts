@@ -194,6 +194,37 @@ export class DataService {
     );
   }
   public sideBar = [
+
+    {
+      tittle: 'Accesos',
+      showAsTab: false,
+      separateRoute: false,
+      menu: [
+        {
+          menuValue: 'Roles y Permisos',
+          hasSubRoute: true,
+          showSubRoute: false,
+          base: 'gallery',
+          base2: 'profile',
+          icon: 'fa-columns',
+          faIcon: true,
+          subMenus: [
+            {
+              menuValue: 'Registrar',
+              route: routes.registerRole,
+              base: routes.registerRole,
+            },
+            {
+              menuValue: 'Listado',
+              route: routes.listadorRole,
+              base: routes.listadorRole,
+            }
+           
+          ],
+        },
+        
+      ],
+    },
     {
       tittle: 'Main',
       showAsTab: false,
