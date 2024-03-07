@@ -193,13 +193,13 @@ export class DataService {
       })
     );
   }
-  public sideBar = [
-
+  public sideBar = [    
     {
-      tittle: 'Accesos',
+      tittle: 'Main',
       showAsTab: false,
       separateRoute: false,
       menu: [
+
         {
           menuValue: 'Roles y Permisos',
           hasSubRoute: true,
@@ -210,7 +210,7 @@ export class DataService {
           faIcon: true,
           subMenus: [
             {
-              menuValue: 'Registrar',
+              menuValue: 'register',
               route: routes.registerRole,
               base: routes.registerRole,
             },
@@ -222,14 +222,6 @@ export class DataService {
            
           ],
         },
-        
-      ],
-    },
-    {
-      tittle: 'Main',
-      showAsTab: false,
-      separateRoute: false,
-      menu: [
         {
           menuValue: 'Dashboard',
           hasSubRoute: true,
