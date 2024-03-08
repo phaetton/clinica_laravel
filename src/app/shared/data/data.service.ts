@@ -210,7 +210,7 @@ export class DataService {
           faIcon: true,
           subMenus: [
             {
-              menuValue: 'register',
+              menuValue: 'Registro',
               route: routes.registerRole,
               base: routes.registerRole,
             },
