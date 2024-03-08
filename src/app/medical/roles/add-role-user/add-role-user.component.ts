@@ -15,6 +15,6 @@ export class AddRoleUserComponent  implements OnInit{
   }
 
   ngOnInit():void{
-    this.sideBar= this.DataService.sideBar;
+    this.sideBar= this.DataService.sideBar[0].menu;
   }
 }
