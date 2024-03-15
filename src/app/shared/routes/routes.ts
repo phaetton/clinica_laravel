@@ -359,7 +359,7 @@ export class routes {
   public static get registerRole(): string {
     return this.baseUrl + '/roles/register';
   }
-  public static get listadorRole(): string {
+  public static get listadoRole(): string {
     return this.baseUrl + '/roles/list';
   } 
 }
