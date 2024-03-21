@@ -51,6 +51,8 @@ export class AddRoleUserComponent implements OnInit {
     };
     this.roleService.storeRoles(data).subscribe((resp: any) => {
       console.log(resp);
+      this.name ='';
+      this.permission =[];
     })
   }
 }
