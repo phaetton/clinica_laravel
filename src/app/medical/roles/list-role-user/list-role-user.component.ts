@@ -11,7 +11,7 @@ import { RolesService } from '../service/roles.service';
   styleUrls: ['./list-role-user.component.scss']
 })
 export class ListRoleUserComponent {
-  public rolesList :any= [];
+  public rolesList: any = [];
   dataSource!: MatTableDataSource<any>;
 
   public showFilter = false;
@@ -27,7 +27,7 @@ export class ListRoleUserComponent {
   public pageNumberArray: Array<number> = [];
   public pageSelection: Array<any> = [];
   public totalPages = 0;
-
+  public role_generals: any = [];
   constructor(
     public roleService: RolesService
   ) {
@@ -42,18 +42,31 @@ export class ListRoleUserComponent {
 
     this.roleService.listRoles().subscribe((resp: any) => {
       this.totalData = resp.roles.length;
-      resp.roles.map((res: any, index: number) => {
-        const serialNumber = index + 1;
-        if (index >= this.skip && serialNumber <= this.limit) {
 
-          this.rolesList.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
-      });
-      this.dataSource = new MatTableDataSource<any>(this.rolesList);
-      this.calculateTotalPages(this.totalData, this.pageSize);
+      this.role_generals = resp.roles;
+      this.getTabledataGeneral();
+
+
+
+
     })
   }
+
+
+  getTabledataGeneral() {
+    this.role_generals.map((res: any, index: number) => {
+      const serialNumber = index + 1;
+      if (index >= this.skip && serialNumber <= this.limit) {
+
+        this.rolesList.push(res);
+        this.serialNumberArray.push(serialNumber);
+      }
+
+      this.dataSource = new MatTableDataSource<any>(this.rolesList);
+      this.calculateTotalPages(this.totalData, this.pageSize);
+    });
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
@@ -66,7 +79,7 @@ export class ListRoleUserComponent {
     if (!sort.active || sort.direction === '') {
       this.rolesList = data;
     } else {
-      this.rolesList = data.sort((a:any, b:any) => {
+      this.rolesList = data.sort((a: any, b: any) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const aValue = (a as any)[sort.active];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -82,13 +95,13 @@ export class ListRoleUserComponent {
       this.pageIndex = this.currentPage - 1;
       this.limit += this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
+      this.getTabledataGeneral();
     } else if (event == 'previous') {
       this.currentPage--;
       this.pageIndex = this.currentPage - 1;
       this.limit -= this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
+      this.getTabledataGeneral();
     }
   }
 
@@ -101,7 +114,7 @@ export class ListRoleUserComponent {
     } else if (pageNumber < this.currentPage) {
       this.pageIndex = pageNumber + 1;
     }
-    this.getTableData();
+    this.getTabledataGeneral();
   }
 
   public PageSize(): void {
@@ -109,8 +122,8 @@ export class ListRoleUserComponent {
     this.limit = this.pageSize;
     this.skip = 0;
     this.currentPage = 1;
-    this.searchDataValue='';
-    this.getTableData();
+    this.searchDataValue = '';
+    this.getTabledataGeneral();
   }
 
   private calculateTotalPages(totalData: number, pageSize: number): void {
