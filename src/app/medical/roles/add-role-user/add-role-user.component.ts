@@ -12,6 +12,8 @@ export class AddRoleUserComponent implements OnInit {
   name: string = '';
   permission: any = [];
   valid_form: boolean = false;
+  valid_form_success: boolean = false;
+  text_validation: any = null;
   constructor(
     public DataService: DataService,
     public roleService: RolesService
@@ -38,10 +40,8 @@ export class AddRoleUserComponent implements OnInit {
   }
 
   save() {
-    this.valid_form = false; 
-    console.log("Enviando",this.name ,this.permission);
-    
-    if (!this.name || !this.permission) {
+    this.valid_form = false;
+    if (!this.name || this.permission == 0) {
       this.valid_form = true;
       return;
     }
@@ -49,10 +49,25 @@ export class AddRoleUserComponent implements OnInit {
       name: this.name,
       permisions: this.permission
     };
+
+    this.valid_form_success = false;
+    this.text_validation=null;
     this.roleService.storeRoles(data).subscribe((resp: any) => {
       console.log(resp);
-      this.name ='';
-      this.permission =[];
+      if (resp.message == 403) {
+        this.text_validation = resp.message_text;
+      } else {
+
+        this.name = '';
+        this.permission = [];
+        this.valid_form_success = true;
+
+        let SIDE_BAR = this.sideBar;
+        this.sideBar = [];
+        setTimeout(
+          () => { this.sideBar = SIDE_BAR; }
+          , 50)
+      }
     })
   }
 }
