@@ -54,6 +54,8 @@ export class ListRoleUserComponent {
 
 
   getTabledataGeneral() {
+    this.rolesList = [];
+    this.serialNumberArray = [];
     this.role_generals.map((res: any, index: number) => {
       const serialNumber = index + 1;
       if (index >= this.skip && serialNumber <= this.limit) {

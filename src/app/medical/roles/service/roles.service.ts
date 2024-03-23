@@ -20,6 +20,12 @@ export class RolesService {
     return this.http.get(URL, { headers: headers });
   }
 
+  showRoles(role_id: string) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let URL = URL_SERVICIOS + "/roles/" + role_id;
+    return this.http.get(URL, { headers: headers });
+  }
+
   storeRoles(data: any) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authService.token });
     let URL = URL_SERVICIOS + "/roles";
@@ -37,6 +43,5 @@ export class RolesService {
     let URL = URL_SERVICIOS + "/roles" + id_role;
     return this.http.delete(URL, { headers: headers });
   }
-
 
 }
