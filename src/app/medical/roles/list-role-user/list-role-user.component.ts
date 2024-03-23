@@ -109,6 +109,7 @@ export class ListRoleUserComponent {
     this.limit = this.pageSize;
     this.skip = 0;
     this.currentPage = 1;
+    this.searchDataValue='';
     this.getTableData();
   }
 
