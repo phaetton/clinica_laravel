@@ -5,12 +5,15 @@ import { DataService } from 'src/app/shared/data/data.service';
 import { doctorlist, pageSelection, apiResultFormat } from 'src/app/shared/models/models';
 import { RolesService } from '../service/roles.service';
 
+
+declare var $: any;
 @Component({
   selector: 'app-list-role-user',
   templateUrl: './list-role-user.component.html',
   styleUrls: ['./list-role-user.component.scss']
 })
 export class ListRoleUserComponent {
+
   public rolesList: any = [];
   dataSource!: MatTableDataSource<any>;
 
@@ -19,20 +22,21 @@ export class ListRoleUserComponent {
   public lastIndex = 0;
   public pageSize = 10;
   public totalData = 0;
-  public skip = 0;
-  public limit: number = this.pageSize;
+  public skip = 0;//MIN
+  public limit: number = this.pageSize;//MAX
   public pageIndex = 0;
   public serialNumberArray: Array<number> = [];
   public currentPage = 1;
   public pageNumberArray: Array<number> = [];
   public pageSelection: Array<any> = [];
   public totalPages = 0;
-  public role_generals: any = [];
-  constructor(
-    public roleService: RolesService
-  ) {
 
-  }
+  public role_generals: any = [];
+  public role_selected: any;
+  constructor(
+    public RoleService: RolesService,
+  ) { }
+
   ngOnInit() {
     this.getTableData();
   }
@@ -40,22 +44,18 @@ export class ListRoleUserComponent {
     this.rolesList = [];
     this.serialNumberArray = [];
 
-    this.roleService.listRoles().subscribe((resp: any) => {
+    this.RoleService.listRoles().subscribe((resp: any) => {
+      console.log(resp);
       this.totalData = resp.roles.length;
-
       this.role_generals = resp.roles;
-      this.getTabledataGeneral();
-
-
-
-
+      this.getTableDataGeneral();
     })
   }
 
-
-  getTabledataGeneral() {
+  getTableDataGeneral() {
     this.rolesList = [];
     this.serialNumberArray = [];
+
     this.role_generals.map((res: any, index: number) => {
       const serialNumber = index + 1;
       if (index >= this.skip && serialNumber <= this.limit) {
@@ -63,12 +63,33 @@ export class ListRoleUserComponent {
         this.rolesList.push(res);
         this.serialNumberArray.push(serialNumber);
       }
-
-      this.dataSource = new MatTableDataSource<any>(this.rolesList);
-      this.calculateTotalPages(this.totalData, this.pageSize);
     });
+    this.dataSource = new MatTableDataSource<any>(this.rolesList);
+    this.calculateTotalPages(this.totalData, this.pageSize);
   }
 
+  selectRole(rol: any) {
+    this.role_selected = rol;
+  }
+
+  deleteRol() {
+
+    this.RoleService.deleteRoles(this.role_selected.id).subscribe((resp: any) => {
+      console.log(resp);
+      let INDEX = this.rolesList.findIndex((item: any) => item.id == this.role_selected.id);
+      if (INDEX != -1) {
+        this.rolesList.splice(INDEX, 1);
+
+        $('#delete_patient').hide();
+        $("#delete_patient").removeClass("show");
+        $(".modal-backdrop").remove();
+        $("body").removeClass();
+        $("body").removeAttr("style");
+
+        this.role_selected = null;
+      }
+    })
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
@@ -97,13 +118,13 @@ export class ListRoleUserComponent {
       this.pageIndex = this.currentPage - 1;
       this.limit += this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTabledataGeneral();
+      this.getTableDataGeneral();
     } else if (event == 'previous') {
       this.currentPage--;
       this.pageIndex = this.currentPage - 1;
       this.limit -= this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTabledataGeneral();
+      this.getTableDataGeneral();
     }
   }
 
@@ -116,7 +137,7 @@ export class ListRoleUserComponent {
     } else if (pageNumber < this.currentPage) {
       this.pageIndex = pageNumber + 1;
     }
-    this.getTabledataGeneral();
+    this.getTableDataGeneral();
   }
 
   public PageSize(): void {
@@ -125,7 +146,7 @@ export class ListRoleUserComponent {
     this.skip = 0;
     this.currentPage = 1;
     this.searchDataValue = '';
-    this.getTabledataGeneral();
+    this.getTableDataGeneral();
   }
 
   private calculateTotalPages(totalData: number, pageSize: number): void {
