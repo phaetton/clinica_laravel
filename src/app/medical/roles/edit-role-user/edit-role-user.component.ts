@@ -8,7 +8,7 @@ import { DataService } from 'src/app/shared/data/data.service';
   templateUrl: './edit-role-user.component.html',
   styleUrls: ['./edit-role-user.component.scss']
 })
-export class EditRoleUserComponent implements OnInit{
+export class EditRoleUserComponent implements OnInit {
 
   sideBar: any = [];
   name: string = '';
@@ -76,4 +76,5 @@ export class EditRoleUserComponent implements OnInit{
       this.valid_form_success = true;
     })
   }
+
 }
