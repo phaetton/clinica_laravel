@@ -51,7 +51,7 @@ export class AddRoleUserComponent implements OnInit {
     };
 
     this.valid_form_success = false;
-    this.text_validation=null;
+    this.text_validation = null;
     this.roleService.storeRoles(data).subscribe((resp: any) => {
       console.log(resp);
       if (resp.message == 403) {
