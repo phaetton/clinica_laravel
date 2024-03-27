@@ -6,20 +6,20 @@ import { ListStaffNComponent } from './list-staff-n/list-staff-n.component';
 import { EditStaffNComponent } from './edit-staff-n/edit-staff-n.component';
 
 const routes: Routes = [{
-  path:'',
-  component:StaffComponent,
-  children:[
+  path: '',
+  component: StaffComponent,
+  children: [
     {
-      path:'add-staff',
-      component:AddStaffNComponent
+      path: 'add-staff',
+      component: AddStaffNComponent
     },
     {
-      path:'list-staff',
-      component:ListStaffNComponent
+      path: 'list-staff',
+      component: ListStaffNComponent
     },
     {
-      path:'list-staff/edit-staff/:id',
-      component:EditStaffNComponent
+      path: 'list-staff/edit-staff/:id',
+      component: EditStaffNComponent
     }
   ]
 }];

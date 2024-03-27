@@ -273,10 +273,10 @@ export class DataService {
         },
 
         {
-          menuValue: 'Staff',
+          menuValue: 'Staffs',
           hasSubRoute: true,
           showSubRoute: false,
-          base: 'staff',
+          base: 'staffs',
           img: 'assets/img/icons/menu-icon-08.svg',
           subMenus: [
             {
@@ -403,7 +403,7 @@ export class DataService {
             },
           ],
         },
-     
+
         {
           menuValue: 'Appointments',
           hasSubRoute: true,
