@@ -6,6 +6,9 @@ import { StaffComponent } from './staff.component';
 import { AddStaffNComponent } from './add-staff-n/add-staff-n.component';
 import { EditStaffNComponent } from './edit-staff-n/edit-staff-n.component';
 import { ListStaffNComponent } from './list-staff-n/list-staff-n.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -17,7 +20,12 @@ import { ListStaffNComponent } from './list-staff-n/list-staff-n.component';
   ],
   imports: [
     CommonModule,
-    StaffRoutingModule
+    StaffRoutingModule,
+    //
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule
   ]
 })
 export class StaffModule { }
