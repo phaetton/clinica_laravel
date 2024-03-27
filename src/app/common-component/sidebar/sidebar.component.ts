@@ -28,9 +28,9 @@ export class SidebarComponent {
     private sideBar: SideBarService,
     public authService: AuthService
   ) {
-    // this.user = this.authService.user;
+    this.user = this.authService.user;
     //para evitar que se quede con las variables del usuario anterior
-    let USER = localStorage.getItem("user");
+    // let USER = localStorage.getItem("user");
 
     // INICIO
     if (this.user.roles.includes("Super-Admin")) {
