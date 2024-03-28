@@ -8,26 +8,15 @@ import { Component } from '@angular/core';
 export class AddStaffNComponent {
   public selectedValue !: string  ;
 
-  selectedList1: any[] = [
-    {value: 'Select  Department'},
-    {value: 'Orthopedics'},
-    {value: 'Radiology'},
-    {value: 'Dentist'},
-  ];
-  selectedList2: any[] = [
-    {value: 'Select City'},
-    {value: 'Alaska'},
-    {value: 'Los Angeles'},
-  ];
-  selectedList3: any[] = [
-    {value: 'Select Country'},
-    {value: 'Usa'},
-    {value: 'Uk'},
-    {value: 'Italy'},
-  ];
-  selectedList4: any[] = [
-    {value: 'Select State'},
-    {value: 'Alaska'},
-    {value: 'California'},
-  ];
+  public name:string='';
+  public surname:string='';
+  public mobile:string='';
+  public email:string='';
+  public password:string='';
+  public password_confirmation:string='';
+  public birth:string='';
+  public gender:number=1;
+  public education:string='';
+  public designation:string='';
+  public address:string='';
 }
