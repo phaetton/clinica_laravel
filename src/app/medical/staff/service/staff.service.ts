@@ -14,8 +14,15 @@ export class StaffService {
   ) { }
 
   listUsers() {
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authService.token });
-    let URL = URL_SERVICIOS+"staffs";
-    return this.http.get(URL,{headers:headers});
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let URL = URL_SERVICIOS + "/staffs";
+    return this.http.get(URL, { headers: headers });
+  }
+
+
+  listConfig() {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let URL = URL_SERVICIOS + "/staffs/config";
+    return this.http.get(URL, { headers: headers });
   }
 }
