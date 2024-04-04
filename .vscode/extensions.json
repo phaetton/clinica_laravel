@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "anbuselvanrocky.bootstrap5-vscode"
+        "anbuselvanrocky.bootstrap5-vscode",
+        "johnpapa.angular2"
     ]
 }

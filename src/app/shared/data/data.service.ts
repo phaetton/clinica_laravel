@@ -213,16 +213,22 @@ export class DataService {
               menuValue: 'Admin Dashboard',
               route: routes.adminDashboard,
               base: routes.adminDashboard,
+              permision: '',
+              show_nav: true,
             },
             {
               menuValue: 'Doctor Dashboard',
               route: routes.doctorDashboard,
               base: routes.doctorDashboard,
+              permision: '',
+              show_nav: true,
             },
             {
               menuValue: 'Patient Dashboard',
               route: routes.patientDashboard,
               base: routes.patientDashboard,
+              permision: '',
+              show_nav: true,
             },
           ],
         },
@@ -248,23 +254,49 @@ export class DataService {
               base: routes.listadoRole,
               permision: 'list_rol',
               show_nav: true,
-            },
-            {
-              menuValue: 'Edit Rol',
-              route: '',
-              base: '',
-              permision: 'edit_rol',
-              show_nav: false,
-            },
-            {
-              menuValue: 'Delete Rol',
-              route: '',
-              base: '',
-              permision: 'delete_rol',
-              show_nav: false,
-            },
+            }
+
           ],
         },
+
+        {
+          menuValue: 'Staffs',
+          hasSubRoute: true,
+          showSubRoute: false,
+          base: 'staffs',
+          img: 'assets/img/icons/menu-icon-08.svg',
+          subMenus: [
+            {
+              menuValue: 'Staff List',
+              route: routes.staffList,
+              base: routes.staffList,
+              permision: 'list_staff',
+              show_nav: true,
+            },
+            {
+              menuValue: 'Add Staff',
+              route: routes.addStaff,
+              base: routes.addStaff,
+              permision: 'register_staff',
+              show_nav: true,
+            },
+            {
+              menuValue: 'Edit Staff',
+              route: '',
+              base: '',
+              permision: 'edit_staff',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Staff',
+              route: '',
+              base: '',
+              permision: 'delete_staff',
+              show_nav: false,
+            }
+          ],
+        },
+
         {
           menuValue: 'Doctors',
           hasSubRoute: true,
@@ -285,20 +317,6 @@ export class DataService {
               base: routes.addDoctor,
               permision: 'register_doctor',
               show_nav: true,
-            },
-            {
-              menuValue: 'Edit Doctor',
-              route: '',
-              base: '',
-              permision: 'edit_doctor',
-              show_nav: false,
-            },
-            {
-              menuValue: 'Delete Doctor',
-              route: '',
-              base: '',
-              permision: 'delete_doctor',
-              show_nav: false,
             },
             {
               menuValue: 'Doctor Profile',
@@ -331,20 +349,6 @@ export class DataService {
               show_nav: true,
             },
             {
-              menuValue: 'Edit Patients',
-              route: '',
-              base: '',
-              permision: 'edit_patient',
-              show_nav: false,
-            },
-            {
-              menuValue: 'Delete Patients',
-              route: '',
-              base: '',
-              permision: 'delete_patient',
-              show_nav: false,
-            },
-            {
               menuValue: 'Patients Profile',
               route: routes.patientProfile,
               base: routes.patientProfile,
@@ -353,48 +357,7 @@ export class DataService {
             },
           ],
         },
-        {
-          menuValue: 'Staff',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'staff',
-          img: 'assets/img/icons/menu-icon-08.svg',
-          subMenus: [
-            {
-              menuValue: 'Staff List',
-              route: routes.staffList,
-              base: routes.staffList,
-              permision: 'list_staff',
-              show_nav: true,
-            },
-            {
-              menuValue: 'Add Staff',
-              route: routes.addStaff,
-              base: routes.addStaff,
-              permision: 'register_staff',
-              show_nav: true,
-            },
-            {
-              menuValue: 'Edit Staff',
-              route: '',
-              base: '',
-              permision: 'edit_staff',
-              show_nav: false,
-            },
-            {
-              menuValue: 'Delete Staff',
-              route: '',
-              base: '',
-              permision: 'delete_staff',
-              show_nav: false,
-            },
-            // {
-            //   menuValue: 'Attendance',
-            //   route: routes.staffAttendance,
-            //   base: routes.staffAttendance,
-            // },
-          ],
-        },
+
         {
           menuValue: 'Appointments',
           hasSubRoute: true,
