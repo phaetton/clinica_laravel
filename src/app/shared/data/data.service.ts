@@ -254,8 +254,21 @@ export class DataService {
               base: routes.listadoRole,
               permision: 'list_rol',
               show_nav: true,
-            }
-
+            },
+            {
+              menuValue: 'Edit Rol',
+              route: '',
+              base: '',
+              permision: 'edit_rol',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Rol',
+              route: '',
+              base: '',
+              permision: 'delete_rol',
+              show_nav: false,
+            },
           ],
         },
 
@@ -293,7 +306,12 @@ export class DataService {
               base: '',
               permision: 'delete_staff',
               show_nav: false,
-            }
+            },
+            // {
+            //   menuValue: 'Attendance',
+            //   route: routes.staffAttendance,
+            //   base: routes.staffAttendance,
+            // },
           ],
         },
 
@@ -317,6 +335,20 @@ export class DataService {
               base: routes.addDoctor,
               permision: 'register_doctor',
               show_nav: true,
+            },
+            {
+              menuValue: 'Edit Doctor',
+              route: '',
+              base: '',
+              permision: 'edit_doctor',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Doctor',
+              route: '',
+              base: '',
+              permision: 'delete_doctor',
+              show_nav: false,
             },
             {
               menuValue: 'Doctor Profile',
@@ -347,6 +379,20 @@ export class DataService {
               base: routes.addPatient,
               permision: 'register_patient',
               show_nav: true,
+            },
+            {
+              menuValue: 'Edit Patients',
+              route: '',
+              base: '',
+              permision: 'edit_patient',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Patients',
+              route: '',
+              base: '',
+              permision: 'delete_patient',
+              show_nav: false,
             },
             {
               menuValue: 'Patients Profile',
