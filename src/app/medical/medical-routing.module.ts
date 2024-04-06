@@ -4,15 +4,20 @@ import { MedicalComponent } from './medical.component';
 import { AuthGuard } from '../shared/gaurd/auth.guard';
 
 const routes: Routes = [
-  { 
-    path: '', 
+  {
+    path: '',
     component: MedicalComponent,
-    canActivate:[AuthGuard], 
+    canActivate:[AuthGuard],
     children: [
       {
         path: 'roles',
         loadChildren: () =>
           import('./roles/roles.module').then((m) => m.RolesModule),
+      },
+      {
+        path: 'staffs',
+        loadChildren: () =>
+          import('./staff/staff.module').then((m) => m.StaffModule),
       }
     ]
   }
