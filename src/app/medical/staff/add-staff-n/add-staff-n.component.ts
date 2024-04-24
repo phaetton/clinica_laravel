@@ -28,4 +28,27 @@ export class AddStaffNComponent {
       this.roles = resp.roles;
     })
   }
+<<<<<<< Updated upstream
+=======
+
+  loadFile($event: any) {
+    if ($event.target.files[0].type.indexOf("image") < 0) {
+      // alert("SOLAMENTE PUEDEN SER ARCHIVOS DE TIPO IMAGEN");
+      this.text_validation = "SOLAMENTE PUEDEN SER ARCHIVOS DE TIPO IMAGEN";
+      return;
+    }
+    this.text_validation = '';
+    this.FILE_AVATAR = $event.target.files[0];
+
+    //convirtiendo a base64
+    let reader = new FileReader();
+    reader.readAsDataURL(this.FILE_AVATAR);
+    reader.onloadend = () => this.IMAGEN_PREVIZUALIZA = reader.result;
+  }
+
+  save(){
+    console.log(this.selectedValue);
+
+  }
+>>>>>>> Stashed changes
 }
