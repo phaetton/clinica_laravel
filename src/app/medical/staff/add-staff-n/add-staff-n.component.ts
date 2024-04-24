@@ -48,4 +48,9 @@ export class AddStaffNComponent {
     reader.readAsDataURL(this.FILE_AVATAR);
     reader.onloadend = () => this.IMAGEN_PREVIZUALIZA = reader.result;
   }
+
+  save(){
+    console.log(this.selectedValue);
+
+  }
 }
