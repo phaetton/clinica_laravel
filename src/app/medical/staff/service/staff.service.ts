@@ -24,4 +24,11 @@ export class StaffService {
     let URL = URL_SERVICIOS + "/staffs/config";
     return this.http.get(URL, { headers: headers });
   }
+
+
+  registerUser(data:any){
+    let headers = new HttpHeaders({'Authorization': 'Bearer '+this.authService.token});
+    let URL = URL_SERVICIOS+"/staffs";
+    return this.http.post(URL,data,{headers: headers});
+  }
 }
