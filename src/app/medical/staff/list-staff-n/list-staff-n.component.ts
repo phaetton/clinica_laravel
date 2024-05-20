@@ -29,9 +29,10 @@ export class ListStaffNComponent {
   public role_generals: any = [];
   public staff_selected: any;
   constructor(
-    public StaffService: StaffService,
-  ) { }
+    public staffService: StaffService,
+  ) {
 
+  }
   ngOnInit() {
     this.getTableData();
   }
@@ -39,12 +40,16 @@ export class ListStaffNComponent {
     this.usersList = [];
     this.serialNumberArray = [];
 
-    this.StaffService.listUsers().subscribe((resp: any) => {
+    this.staffService.listUsers().subscribe((resp: any) => {
+
       console.log(resp);
+
       this.totalData = resp.users.data.length;
       this.role_generals = resp.users.data;
       this.getTableDataGeneral();
     })
+
+
   }
 
   getTableDataGeneral() {
@@ -69,23 +74,22 @@ export class ListStaffNComponent {
 
   deleteUser() {
 
-  //   this.StaffService.deleteusers.data(this.staff_selected.id).subscribe((resp: any) => {
-  //     console.log(resp);
-  //     let INDEX = this.usersList.findIndex((item: any) => item.id == this.staff_selected.id);
-  //     if (INDEX != -1) {
-  //       this.usersList.splice(INDEX, 1);
+    this.staffService.deleteUser(this.staff_selected.id).subscribe((resp: any) => {
+      console.log(resp);
+      let INDEX = this.usersList.findIndex((item: any) => item.id == this.staff_selected.id);
+      if (INDEX != -1) {
+        this.usersList.splice(INDEX, 1);
 
-  //       $('#delete_patient').hide();
-  //       $("#delete_patient").removeClass("show");
-  //       $(".modal-backdrop").remove();
-  //       $("body").removeClass();
-  //       $("body").removeAttr("style");
+        $('#delete_patient').hide();
+        $("#delete_patient").removeClass("show");
+        $(".modal-backdrop").remove();
+        $("body").removeClass();
+        $("body").removeAttr("style");
 
-  //       this.staff_selected = null;
-  //     }
-  //   })
+        this.staff_selected = null;
+      }
+    })
   }
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
@@ -157,6 +161,11 @@ export class ListStaffNComponent {
       const skip = limit - pageSize;
       this.pageNumberArray.push(i);
       this.pageSelection.push({ skip: skip, limit: limit });
+      // 1
+      // 0 - 10
+      // 2
+      // 10 - 20
     }
   }
+
 }
