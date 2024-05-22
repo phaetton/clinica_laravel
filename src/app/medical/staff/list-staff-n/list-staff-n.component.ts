@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { StaffService } from '../service/staff.service';
 import { MatTableDataSource } from '@angular/material/table';
-
+declare var $: any;
 @Component({
   selector: 'app-list-staff-n',
   templateUrl: './list-staff-n.component.html',
@@ -74,21 +74,21 @@ export class ListStaffNComponent {
 
   deleteUser() {
 
-    // this.staffService.deleteUser(this.staff_selected.id).subscribe((resp: any) => {
-    //   console.log(resp);
-    //   let INDEX = this.usersList.findIndex((item: any) => item.id == this.staff_selected.id);
-    //   if (INDEX != -1) {
-    //     this.usersList.splice(INDEX, 1);
+    this.staffService.deleteUser(this.staff_selected.id).subscribe((resp: any) => {
+      console.log(resp);
+      let INDEX = this.usersList.findIndex((item: any) => item.id == this.staff_selected.id);
+      if (INDEX != -1) {
+        this.usersList.splice(INDEX, 1);
 
-    //     $('#delete_patient').hide();
-    //     $("#delete_patient").removeClass("show");
-    //     $(".modal-backdrop").remove();
-    //     $("body").removeClass();
-    //     $("body").removeAttr("style");
+        $('#delete_patient').hide();
+        $("#delete_patient").removeClass("show");
+        $(".modal-backdrop").remove();
+        $("body").removeClass();
+        $("body").removeAttr("style");
 
-    //     this.staff_selected = null;
-    //   }
-    // })
+        this.staff_selected = null;
+      }
+    })
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {

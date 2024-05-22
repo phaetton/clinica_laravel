@@ -21,17 +21,18 @@ export class SidebarComponent {
 
   public routes = routes;
   public sidebarData: Array<SideBarData> = [];
-  public user: any;
-
+  public user:any;
   constructor(
     private data: DataService,
     private router: Router,
     private sideBar: SideBarService,
     public authService: AuthService,
   ) {
-    this.user = this.authService.user;
+    // this.user = this.authService.user;
+    let USER = localStorage.getItem("user");
+    this.user = JSON.parse(USER ? USER : '');
     // INICIO
-    if(this.user.roles.includes("Super-Admin")){
+    if(this.user && this.user.roles.includes("Super-Admin")){
       this.sidebarData = this.data.sideBar;
     }else{
       // VAMOS A FILTRAR Y VALIDAR QUE OPCIONES PUEDE VER ESE ROL
