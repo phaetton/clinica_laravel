@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: MedicalComponent,
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'roles',
@@ -28,6 +28,11 @@ const routes: Routes = [
         path: 'doctors',
         loadChildren: () =>
           import('./doctors/doctors.module').then((m) => m.DoctorsModule),
+      },
+      {
+        path: 'patient-m',
+        loadChildren: () =>
+          import('./patient-m/patient-m.module').then((m) => m.PatientMModule),
       },
     ]
   }

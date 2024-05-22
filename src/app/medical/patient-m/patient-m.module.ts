@@ -6,6 +6,9 @@ import { PatientMComponent } from './patient-m.component';
 import { AddPatientMComponent } from './add-patient-m/add-patient-m.component';
 import { EditPatientMComponent } from './edit-patient-m/edit-patient-m.component';
 import { ListPatientMComponent } from './list-patient-m/list-patient-m.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -17,7 +20,12 @@ import { ListPatientMComponent } from './list-patient-m/list-patient-m.component
   ],
   imports: [
     CommonModule,
-    PatientMRoutingModule
+    PatientMRoutingModule,
+
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule
   ]
 })
 export class PatientMModule { }
