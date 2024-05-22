@@ -66,10 +66,10 @@ export class routes {
     return this.baseUrl + '/activities';
   }
   public static get addAppointment(): string {
-    return this.baseUrl + '/appointments/add-appointment';
+    return this.baseUrl + '/appointment-m/register';
   }
   public static get appointmentList(): string {
-    return this.baseUrl + '/appointments/appointment-list';
+    return this.baseUrl + '/appointment-m/list';
   }
   public static get editAppointment(): string {
     return this.baseUrl + '/appointments/edit-appointment';
@@ -99,7 +99,7 @@ export class routes {
     return this.baseUrl + '/blogs/edit-blog';
   }
   public static get calendar(): string {
-    return this.baseUrl + '/calendar';
+    return this.baseUrl + '/appointment-calendar/show';
   }
   public static get incomingCall(): string {
     return this.baseUrl + '/calls/incoming-call';
@@ -261,7 +261,7 @@ export class routes {
     return this.baseUrl + '/payroll/edit-salary';
   }
   public static get salary(): string {
-    return this.baseUrl + '/payroll/salary';
+    return this.baseUrl + '/appointment-pay/list';
   }
   public static get salaryView(): string {
     return this.baseUrl + '/payroll/salary-view';

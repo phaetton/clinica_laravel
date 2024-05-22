@@ -193,8 +193,6 @@ export class DataService {
       })
     );
   }
-
-
   public sideBar = [
     {
       tittle: 'Main',
@@ -271,9 +269,8 @@ export class DataService {
             },
           ],
         },
-
         {
-          menuValue: 'Staffs',
+          menuValue: 'Staff',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'staffs',
@@ -359,17 +356,17 @@ export class DataService {
           img: 'assets/img/icons/menu-icon-02.svg',
           subMenus: [
             {
-              menuValue: 'Doctor List',
-              route: routes.doctorsList,
-              base: routes.doctorsList,
-              permision: 'list_doctor',
-              show_nav: true,
-            },
-            {
               menuValue: 'Add Doctor',
               route: routes.addDoctor,
               base: routes.addDoctor,
               permision: 'register_doctor',
+              show_nav: true,
+            },
+            {
+              menuValue: 'Doctor List',
+              route: routes.doctorsList,
+              base: routes.doctorsList,
+              permision: 'list_doctor',
               show_nav: true,
             },
             {
@@ -388,10 +385,10 @@ export class DataService {
             },
             {
               menuValue: 'Doctor Profile',
-              route: routes.doctorProfile,
-              base: routes.doctorProfile,
+              route: '',
+              base: '',
               permision: 'profile_doctor',
-              show_nav: true,
+              show_nav: false,
             },
           ],
         },
@@ -403,17 +400,17 @@ export class DataService {
           img: 'assets/img/icons/menu-icon-03.svg',
           subMenus: [
             {
-              menuValue: 'Patients List',
-              route: routes.patientsList,
-              base: routes.patientsList,
-              permision: 'list_patient',
-              show_nav: true,
-            },
-            {
               menuValue: 'Add Patients',
               route: routes.addPatient,
               base: routes.addPatient,
               permision: 'register_patient',
+              show_nav: true,
+            },
+            {
+              menuValue: 'Patients List',
+              route: routes.patientsList,
+              base: routes.patientsList,
+              permision: 'list_patient',
               show_nav: true,
             },
             {
@@ -432,14 +429,13 @@ export class DataService {
             },
             {
               menuValue: 'Patients Profile',
-              route: routes.patientProfile,
-              base: routes.patientProfile,
+              route: '',
+              base: '',
               permision: 'profile_patient',
-              show_nav: true,
+              show_nav: false,
             },
           ],
         },
-
         {
           menuValue: 'Appointments',
           hasSubRoute: true,
@@ -448,17 +444,17 @@ export class DataService {
           img: 'assets/img/icons/menu-icon-04.svg',
           subMenus: [
             {
+              menuValue: 'Register Appointment',
+              route: routes.addAppointment,
+              base: routes.addAppointment,
+              permision: 'register_appointment',
+              show_nav: true,
+            },
+            {
               menuValue: 'Appointment List',
               route: routes.appointmentList,
               base: routes.appointmentList,
               permision: 'list_appointment',
-              show_nav: true,
-            },
-            {
-              menuValue: 'Book Appointment',
-              route: routes.addAppointment,
-              base: routes.addAppointment,
-              permision: 'register_appointment',
               show_nav: true,
             },
             {
@@ -473,43 +469,6 @@ export class DataService {
               route: '',
               base: '',
               permision: 'delete_appointment',
-              show_nav: false,
-            },
-          ],
-        },
-        {
-          menuValue: 'Especialidades',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'specialtys',
-          img: 'assets/img/icons/menu-icon-06.svg',
-          subMenus: [
-            {
-              menuValue: 'Especialidad List',
-              route: routes.departmentList,
-              base: routes.departmentList,
-              permision: 'list_specialty',
-              show_nav: true,
-            },
-            {
-              menuValue: 'Add Especialidad',
-              route: routes.addDepartment,
-              base: routes.addDepartment,
-              permision: 'register_specialty',
-              show_nav: true,
-            },
-            {
-              menuValue: 'Edit Especialidad',
-              route: '',
-              base: '',
-              permision: 'edit_specialty',
-              show_nav: false,
-            },
-            {
-              menuValue: 'Delete Especialidad',
-              route: '',
-              base: '',
-              permision: 'delete_specialty',
               show_nav: false,
             },
           ],
@@ -538,17 +497,6 @@ export class DataService {
           ],
         },
         {
-          menuValue: 'Activities',
-          route: routes.activities,
-          hasSubRoute: false,
-          showSubRoute: false,
-          img: 'assets/img/icons/menu-icon-14.svg',
-          base: 'activities',
-          permision: 'activitie',
-          show_nav: true,
-          subMenus: [],
-        },
-        {
           menuValue: 'Calendar',
           route: routes.calendar,
           hasSubRoute: false,
@@ -560,6 +508,18 @@ export class DataService {
           show_nav: true,
           subMenus: [],
         },
+        {
+          menuValue: 'Activities',
+          route: routes.activities,
+          hasSubRoute: false,
+          showSubRoute: false,
+          img: 'assets/img/icons/menu-icon-14.svg',
+          base: 'activities',
+          permision: 'activitie',
+          show_nav: true,
+          subMenus: [],
+        },
+
         {
           menuValue: 'Reports',
           hasSubRoute: true,
@@ -597,7 +557,9 @@ export class DataService {
       ],
     },
   ];
+  // public sideBarList = [
 
+  // ];
 
   public carousel1 = [
     {
