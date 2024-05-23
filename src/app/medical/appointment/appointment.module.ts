@@ -7,7 +7,10 @@ import { AddAppointmentsComponent } from './add-appointments/add-appointments.co
 import { AtencionMedicalComponent } from './atencion-medical/atencion-medical.component';
 import { EditAppointmentsComponent } from './edit-appointments/edit-appointments.component';
 import { ListAppointmentsComponent } from './list-appointments/list-appointments.component';
-import { ListAppointmentPayComponent } from './list-appointment-pay/list-appointment-pay.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -17,11 +20,16 @@ import { ListAppointmentPayComponent } from './list-appointment-pay/list-appoint
     AtencionMedicalComponent,
     EditAppointmentsComponent,
     ListAppointmentsComponent,
-    ListAppointmentPayComponent
   ],
   imports: [
     CommonModule,
-    AppointmentRoutingModule
+    AppointmentRoutingModule,
+     //
+     FormsModule,
+     ReactiveFormsModule,
+     HttpClientModule,
+     RouterModule,
+     SharedModule
   ]
 })
 export class AppointmentModule { }
