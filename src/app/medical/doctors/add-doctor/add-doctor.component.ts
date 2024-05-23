@@ -7,30 +7,30 @@ import { DoctorService } from '../service/doctor.service';
   styleUrls: ['./add-doctor.component.scss']
 })
 export class AddDoctorComponent {
-  public selectedValue !: string;
-  public name: string = '';
-  public surname: string = '';
-  public mobile: string = '';
-  public email: string = '';
-  public password: string = '';
-  public password_confirmation: string = '';
+  public selectedValue !: string  ;
+  public name:string = '';
+  public surname:string = '';
+  public mobile:string = '';
+  public email:string = '';
+  public password:string = '';
+  public password_confirmation:string = '';
 
-  public birth_date: string = '';
-  public gender: number = 1;
-  public education: string = '';
-  public designation: string = '';
-  public address: string = '';
+  public birth_date:string = '';
+  public gender:number = 1;
+  public education:string = '';
+  public designation:string = '';
+  public address:string = '';
 
-  public roles: any = [];
+  public roles:any = [];
 
-  public FILE_AVATAR: any;
-  public IMAGEN_PREVIZUALIZA: any = 'assets/img/user-06.jpg';
+  public FILE_AVATAR:any;
+  public IMAGEN_PREVIZUALIZA:any = 'assets/img/user-06.jpg';
 
-  public specialitie_id: any;
-  public specialities: any = [];
+  public specialitie_id:any;
+  public specialities:any = [];
 
-  public text_success: string = '';
-  public text_validation: string = '';
+  public text_success:string = '';
+  public text_validation:string = '';
 
   public days_week = [
     {
@@ -52,18 +52,10 @@ export class AddDoctorComponent {
     {
       day: 'Viernes',
       class: 'table-info'
-    },
-    {
-      day: 'Sabado',
-      class: 'table-primary'
-    },
-    {
-      day: 'Domingo',
-      class: 'table-secondary'
     }
   ]
-  public hours_days: any = [];
-  public hours_selecteds: any = [];
+  public hours_days:any = [];
+  public hours_selecteds:any = [];
   constructor(
     public doctorsService: DoctorService,
   ) {
@@ -72,7 +64,7 @@ export class AddDoctorComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.doctorsService.listConfig().subscribe((resp: any) => {
+    this.doctorsService.listConfig().subscribe((resp:any) => {
       console.log(resp);
       this.roles = resp.roles;
       this.specialities = resp.specialities;
@@ -80,71 +72,71 @@ export class AddDoctorComponent {
     })
   }
 
-  save() {
+  save(){
     this.text_validation = '';
-    if (!this.name || !this.email || !this.surname || !this.FILE_AVATAR || !this.password) {
+    if(!this.name || !this.email || !this.surname || !this.FILE_AVATAR || !this.password){
       this.text_validation = "LOS CAMPOS SON NECESARIOS (name,surname,email,avatar)";
       return;
     }
 
-    if (this.password != this.password_confirmation) {
+    if(this.password != this.password_confirmation){
       this.text_validation = "LAS CONTRASEÑA DEBEN SER IGUALES";
       return;
     }
 
-    if (this.hours_selecteds.length == 0) {
+    if(this.hours_selecteds.length == 0){
       this.text_validation = "NECESITAS SELECCIONAR UN HORARIO AL MENOS";
       return;
     }
     console.log(this.selectedValue);
 
     let formData = new FormData();
-    formData.append("name", this.name);
-    formData.append("surname", this.surname);
-    formData.append("email", this.email);
-    formData.append("mobile", this.mobile);
-    formData.append("birth_date", this.birth_date);
-    formData.append("gender", this.gender + "");
-    formData.append("education", this.education);
-    formData.append("designation", this.designation);
-    formData.append("address", this.address);
-    formData.append("password", this.password);
-    formData.append("role_id", this.selectedValue);
-    formData.append("specialitie_id", this.specialitie_id);
-    formData.append("imagen", this.FILE_AVATAR);
+    formData.append("name",this.name);
+    formData.append("surname",this.surname);
+    formData.append("email",this.email);
+    formData.append("mobile",this.mobile);
+    formData.append("birth_date",this.birth_date);
+    formData.append("gender",this.gender+"");
+    formData.append("education",this.education);
+    formData.append("designation",this.designation);
+    formData.append("address",this.address);
+    formData.append("password",this.password);
+    formData.append("role_id",this.selectedValue);
+    formData.append("specialitie_id",this.specialitie_id);
+    formData.append("imagen",this.FILE_AVATAR);
 
-    let HOUR_SCHEDULES: any = [];
+    let HOUR_SCHEDULES:any = [];
 
-    this.days_week.forEach((day: any) => {
-      let DAYS_HOURS = this.hours_selecteds.filter((hour_select: any) => hour_select.day_name == day.day);
+    this.days_week.forEach((day:any) => {
+      let DAYS_HOURS = this.hours_selecteds.filter((hour_select:any) => hour_select.day_name == day.day);
       HOUR_SCHEDULES.push({
         day_name: day.day,
         children: DAYS_HOURS,
       });
     })
 
-    formData.append("schedule_hours", JSON.stringify(HOUR_SCHEDULES));
-    this.doctorsService.registerDoctor(formData).subscribe((resp: any) => {
+    formData.append("schedule_hours",JSON.stringify(HOUR_SCHEDULES));
+    this.doctorsService.registerDoctor(formData).subscribe((resp:any) => {
       console.log(resp);
 
-      if (resp.message == 403) {
+      if(resp.message == 403){
         this.text_validation = resp.message_text;
-      } else {
+      }else{
         this.text_success = 'El usuario ha sido registrado correctamente';
 
         this.name = '';
         this.surname = '';
-        this.email = '';
-        this.mobile = '';
-        this.birth_date = '';
-        this.gender = 1;
-        this.education = '';
-        this.designation = '';
-        this.address = '';
-        this.password = '';
-        this.password_confirmation = '';
-        this.selectedValue = '';
-        this.specialitie_id = '';
+        this.email  = '';
+        this.mobile  = '';
+        this.birth_date  = '';
+        this.gender  = 1;
+        this.education  = '';
+        this.designation  = '';
+        this.address  = '';
+        this.password  = '';
+        this.password_confirmation  = '';
+        this.selectedValue  = '';
+        this.specialitie_id  = '';
         this.FILE_AVATAR = null;
         this.IMAGEN_PREVIZUALIZA = null;
         this.hours_selecteds = [];
@@ -153,8 +145,8 @@ export class AddDoctorComponent {
     })
   }
 
-  loadFile($event: any) {
-    if ($event.target.files[0].type.indexOf("image") < 0) {
+  loadFile($event:any){
+    if($event.target.files[0].type.indexOf("image") < 0){
       // alert("SOLAMENTE PUEDEN SER ARCHIVOS DE TIPO IMAGEN");
       this.text_validation = "SOLAMENTE PUEDEN SER ARCHIVOS DE TIPO IMAGEN";
       return;
@@ -166,14 +158,14 @@ export class AddDoctorComponent {
     reader.onloadend = () => this.IMAGEN_PREVIZUALIZA = reader.result;
   }
 
-  addHourItem(hours_day: any, day: any, item: any) {
+  addHourItem(hours_day:any,day:any,item:any){
 
-    let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.day_name == day.day
-      && hour.hour == hours_day.hour
-      && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
-    if (INDEX != -1) {
-      this.hours_selecteds.splice(INDEX, 1);
-    } else {
+    let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.day_name == day.day
+                                && hour.hour == hours_day.hour
+                                && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
+    if(INDEX != -1){
+      this.hours_selecteds.splice(INDEX,1);
+    }else{
       this.hours_selecteds.push({
         "day": day,
         "day_name": day.day,
@@ -187,28 +179,28 @@ export class AddDoctorComponent {
     console.log(this.hours_selecteds);
   }
 
-  addHourAll(hours_day: any, day: any) {
-    let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.day_name == day.day
-      && hour.hour == hours_day.hour && hour.grupo == "all");
+  addHourAll(hours_day:any,day:any){
+    let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.day_name == day.day
+                                && hour.hour == hours_day.hour && hour.grupo == "all");
 
-    let COUNT_SELECTED = this.hours_selecteds.filter((hour: any) => hour.day_name == day.day
-      && hour.hour == hours_day.hour).length;
-    if (INDEX != -1 && COUNT_SELECTED == hours_day.items.length) {
-      hours_day.items.forEach((item: any) => {
-        let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.day_name == day.day
-          && hour.hour == hours_day.hour
-          && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
-        if (INDEX != -1) {
-          this.hours_selecteds.splice(INDEX, 1);
+    let COUNT_SELECTED = this.hours_selecteds.filter((hour:any) => hour.day_name == day.day
+                                && hour.hour == hours_day.hour).length;
+    if(INDEX != -1 && COUNT_SELECTED ==  hours_day.items.length){
+      hours_day.items.forEach((item:any) => {
+        let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.day_name == day.day
+                                && hour.hour == hours_day.hour
+                                && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
+        if(INDEX != -1){
+          this.hours_selecteds.splice(INDEX,1);
         }
       });
-    } else {
-      hours_day.items.forEach((item: any) => {
-        let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.day_name == day.day
-          && hour.hour == hours_day.hour
-          && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
-        if (INDEX != -1) {
-          this.hours_selecteds.splice(INDEX, 1);
+    }else{
+      hours_day.items.forEach((item:any) => {
+        let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.day_name == day.day
+                                && hour.hour == hours_day.hour
+                                && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
+        if(INDEX != -1){
+          this.hours_selecteds.splice(INDEX,1);
         }
         this.hours_selecteds.push({
           "day": day,
@@ -223,35 +215,35 @@ export class AddDoctorComponent {
     console.log(this.hours_selecteds);
   }
 
-  addHourAllDay($event: any, hours_day: any) {
+  addHourAllDay($event:any,hours_day:any){
 
-    let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.hour == hours_day.hour);
+    let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.hour == hours_day.hour);
 
-    if (INDEX != -1 && !$event.currentTarget.checked) {
+    if(INDEX != -1 && !$event.currentTarget.checked){
       this.days_week.forEach((day) => {
-        hours_day.items.forEach((item: any) => {
-          let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.day_name == day.day
-            && hour.hour == hours_day.hour
-            && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
-          if (INDEX != -1) {
-            this.hours_selecteds.splice(INDEX, 1);
+        hours_day.items.forEach((item:any) => {
+          let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.day_name == day.day
+                                  && hour.hour == hours_day.hour
+                                  && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
+          if(INDEX != -1){
+            this.hours_selecteds.splice(INDEX,1);
           }
         });
       })
-    } else {
+    }else{
       this.days_week.forEach((day) => {
-        hours_day.items.forEach((item: any) => {
-          let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.day_name == day.day
-            && hour.hour == hours_day.hour
-            && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
-          if (INDEX != -1) {
-            this.hours_selecteds.splice(INDEX, 1);
+        hours_day.items.forEach((item:any) => {
+          let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.day_name == day.day
+                                  && hour.hour == hours_day.hour
+                                  && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
+          if(INDEX != -1){
+            this.hours_selecteds.splice(INDEX,1);
           }
         });
       })
       setTimeout(() => {
         this.days_week.forEach((day) => {
-          this.addHourAll(hours_day, day);
+          this.addHourAll(hours_day,day);
         })
       }, 25);
     }
@@ -259,26 +251,26 @@ export class AddDoctorComponent {
 
   }
 
-  isCheckHourAll(hours_day: any, day: any) {
-    let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.day_name == day.day
-      && hour.hour == hours_day.hour && hour.grupo == "all");
+  isCheckHourAll(hours_day:any,day:any){
+    let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.day_name == day.day
+                                && hour.hour == hours_day.hour && hour.grupo == "all");
 
-    let COUNT_SELECTED = this.hours_selecteds.filter((hour: any) => hour.day_name == day.day
-      && hour.hour == hours_day.hour).length;
-    if (INDEX != -1 && COUNT_SELECTED == hours_day.items.length) {
+    let COUNT_SELECTED = this.hours_selecteds.filter((hour:any) => hour.day_name == day.day
+                                && hour.hour == hours_day.hour).length;
+    if(INDEX != -1 && COUNT_SELECTED ==  hours_day.items.length){
       return true;
-    } else {
+    }else{
       return false;
     }
   }
 
-  isCheckHour(hours_day: any, day: any, item: any) {
-    let INDEX = this.hours_selecteds.findIndex((hour: any) => hour.day_name == day.day
-      && hour.hour == hours_day.hour
-      && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
-    if (INDEX != -1) {
+  isCheckHour(hours_day:any,day:any,item:any){
+    let INDEX = this.hours_selecteds.findIndex((hour:any) => hour.day_name == day.day
+                                && hour.hour == hours_day.hour
+                                && hour.item.hour_start == item.hour_start && hour.item.hour_end == item.hour_end);
+    if(INDEX != -1){
       return true;
-    } else {
+    }else{
       return false;
     }
   }

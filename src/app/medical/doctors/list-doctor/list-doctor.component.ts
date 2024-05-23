@@ -8,7 +8,7 @@ declare var $: any;
   styleUrls: ['./list-doctor.component.scss']
 })
 export class ListDoctorComponent {
-  public usersList: any = [];
+  public usersList:any = [];
   dataSource!: MatTableDataSource<any>;
 
   public showFilter = false;
@@ -25,21 +25,33 @@ export class ListDoctorComponent {
   public pageSelection: Array<any> = [];
   public totalPages = 0;
 
-  public role_generals: any = [];
-  public doctor_selected: any;
+  public role_generals:any = [];
+  public doctor_selected:any;
+  public user:any;
   constructor(
     public doctorService: DoctorService,
-  ) {
+  ){
 
   }
   ngOnInit() {
     this.getTableData();
+    this.user = this.doctorService.authService.user;
+  }
+
+  isPermision(permission:string){
+    if(this.user.roles.includes('Super-Admin')){
+      return true;
+    }
+    if(this.user.permissions.includes(permission)){
+      return true;
+    }
+    return false;
   }
   private getTableData(): void {
     this.usersList = [];
     this.serialNumberArray = [];
 
-    this.doctorService.listDoctors().subscribe((resp: any) => {
+    this.doctorService.listDoctors().subscribe((resp:any) => {
 
       console.log(resp);
 
@@ -67,17 +79,17 @@ export class ListDoctorComponent {
     this.calculateTotalPages(this.totalData, this.pageSize);
   }
 
-  selectUser(rol: any) {
+  selectUser(rol:any){
     this.doctor_selected = rol;
   }
 
-  deleteUser() {
+  deleteUser(){
 
-    this.doctorService.deleteDoctor(this.doctor_selected.id).subscribe((resp: any) => {
+    this.doctorService.deleteDoctor(this.doctor_selected.id).subscribe((resp:any) => {
       console.log(resp);
-      let INDEX = this.usersList.findIndex((item: any) => item.id == this.doctor_selected.id);
-      if (INDEX != -1) {
-        this.usersList.splice(INDEX, 1);
+      let INDEX = this.usersList.findIndex((item:any) => item.id == this.doctor_selected.id);
+      if(INDEX != -1){
+        this.usersList.splice(INDEX,1);
 
         $('#delete_patient').hide();
         $("#delete_patient").removeClass("show");
@@ -101,7 +113,7 @@ export class ListDoctorComponent {
     if (!sort.active || sort.direction === '') {
       this.usersList = data;
     } else {
-      this.usersList = data.sort((a: any, b: any) => {
+      this.usersList = data.sort((a:any, b:any) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const aValue = (a as any)[sort.active];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
