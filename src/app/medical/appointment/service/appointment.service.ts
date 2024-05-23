@@ -7,6 +7,7 @@
     providedIn: 'root'
   })
   export class AppointmentService {
+
     constructor(
       public http: HttpClient,
       public authService: AuthService,
@@ -83,3 +84,4 @@
       return this.http.get(URL,{headers: headers});
     }
   }
+
