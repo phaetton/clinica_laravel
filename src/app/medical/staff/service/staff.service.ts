@@ -9,7 +9,7 @@ import { URL_SERVICIOS } from 'src/config/config';
 export class StaffService {
   constructor(
     public http: HttpClient,
-    public authService: AuthService
+    public authService: AuthService,
   ) { }
 
   listUsers() {
@@ -18,13 +18,11 @@ export class StaffService {
     return this.http.get(URL, { headers: headers });
   }
 
-
   listConfig() {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let URL = URL_SERVICIOS + "/staffs/config";
     return this.http.get(URL, { headers: headers });
   }
-
 
   registerUser(data: any) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });

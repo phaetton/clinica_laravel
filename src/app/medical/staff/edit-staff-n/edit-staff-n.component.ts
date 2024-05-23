@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-staff-n.component.scss']
 })
 export class EditStaffNComponent {
-
   public selectedValue !: string  ;
   public name:string = '';
   public surname:string = '';
