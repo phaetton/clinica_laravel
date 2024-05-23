@@ -24,12 +24,12 @@ import { PatientMProfileComponent } from './patient-m-profile/patient-m-profile.
   imports: [
     CommonModule,
     PatientMRoutingModule,
-
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule,
-    SharedModule
+   //
+   FormsModule,
+   ReactiveFormsModule,
+   HttpClientModule,
+   RouterModule,
+   SharedModule
   ]
 })
 export class PatientMModule { }
