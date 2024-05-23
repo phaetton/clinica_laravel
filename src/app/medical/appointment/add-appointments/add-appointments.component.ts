@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppointmentService } from '../service/appointment.service';
 
 @Component({
   selector: 'app-add-appointments',
