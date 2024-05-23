@@ -6,6 +6,10 @@ import { SpecialitieComponent } from './specialitie.component';
 import { AddSpecialitieComponent } from './add-specialitie/add-specialitie.component';
 import { EditSpecialitieComponent } from './edit-specialitie/edit-specialitie.component';
 import { ListSpecialitieComponent } from './list-specialitie/list-specialitie.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +21,13 @@ import { ListSpecialitieComponent } from './list-specialitie/list-specialitie.co
   ],
   imports: [
     CommonModule,
-    SpecialitieRoutingModule
+    SpecialitieRoutingModule,
+    //
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
+    SharedModule
   ]
 })
 export class SpecialitieModule { }
