@@ -24,8 +24,7 @@ import { DoctorMProfileComponent } from './doctor-m-profile/doctor-m-profile.com
   imports: [
     CommonModule,
     DoctorsRoutingModule,
-
-
+    //
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
