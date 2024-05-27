@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataService } from 'src/app/shared/data/data.service';
-import { doctorlist, pageSelection, apiResultFormat } from 'src/app/shared/models/models';
 import { RolesService } from '../service/roles.service';
-
-
-declare var $: any;
+import { Sort } from '@angular/material/sort';
+declare var $:any;
 @Component({
   selector: 'app-list-role-user',
   templateUrl: './list-role-user.component.html',
@@ -14,7 +10,7 @@ declare var $: any;
 })
 export class ListRoleUserComponent {
 
-  public rolesList: any = [];
+  public rolesList:any = [];
   dataSource!: MatTableDataSource<any>;
 
   public showFilter = false;
@@ -31,25 +27,43 @@ export class ListRoleUserComponent {
   public pageSelection: Array<any> = [];
   public totalPages = 0;
 
-  public role_generals: any = [];
-  public role_selected: any;
+  public role_generals:any = [];
+  public role_selected:any;
+
+  public user:any;
   constructor(
     public RoleService: RolesService,
-  ) { }
+  ){
 
+  }
   ngOnInit() {
+    this.user = this.RoleService.authService.user;
     this.getTableData();
   }
   private getTableData(): void {
     this.rolesList = [];
     this.serialNumberArray = [];
 
-    this.RoleService.listRoles().subscribe((resp: any) => {
+    this.RoleService.listRoles().subscribe((resp:any) => {
+
       console.log(resp);
+
       this.totalData = resp.roles.length;
       this.role_generals = resp.roles;
       this.getTableDataGeneral();
     })
+
+
+  }
+
+  isPermision(permission:string){
+    if(this.user.roles.includes('Super-Admin')){
+      return true;
+    }
+    if(this.user.permissions.includes(permission)){
+      return true;
+    }
+    return false;
   }
 
   getTableDataGeneral() {
@@ -68,17 +82,17 @@ export class ListRoleUserComponent {
     this.calculateTotalPages(this.totalData, this.pageSize);
   }
 
-  selectRole(rol: any) {
+  selectRole(rol:any){
     this.role_selected = rol;
   }
 
-  deleteRol() {
+  deleteRol(){
 
-    this.RoleService.deleteRoles(this.role_selected.id).subscribe((resp: any) => {
+    this.RoleService.deleteRoles(this.role_selected.id).subscribe((resp:any) => {
       console.log(resp);
-      let INDEX = this.rolesList.findIndex((item: any) => item.id == this.role_selected.id);
-      if (INDEX != -1) {
-        this.rolesList.splice(INDEX, 1);
+      let INDEX = this.rolesList.findIndex((item:any) => item.id == this.role_selected.id);
+      if(INDEX != -1){
+        this.rolesList.splice(INDEX,1);
 
         $('#delete_patient').hide();
         $("#delete_patient").removeClass("show");
@@ -102,7 +116,7 @@ export class ListRoleUserComponent {
     if (!sort.active || sort.direction === '') {
       this.rolesList = data;
     } else {
-      this.rolesList = data.sort((a: any, b: any) => {
+      this.rolesList = data.sort((a:any, b:any) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const aValue = (a as any)[sort.active];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -161,6 +175,10 @@ export class ListRoleUserComponent {
       const skip = limit - pageSize;
       this.pageNumberArray.push(i);
       this.pageSelection.push({ skip: skip, limit: limit });
+      // 1
+      // 0 - 10
+      // 2
+      // 10 - 20
     }
   }
 }

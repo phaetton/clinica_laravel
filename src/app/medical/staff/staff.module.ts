@@ -22,13 +22,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     StaffRoutingModule,
-    //
+    SharedModule,
+    // 
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,
-    //
-    SharedModule
+    RouterModule
   ]
 })
 export class StaffModule { }

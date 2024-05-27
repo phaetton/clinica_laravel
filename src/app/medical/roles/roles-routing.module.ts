@@ -7,7 +7,7 @@ import { EditRoleUserComponent } from './edit-role-user/edit-role-user.component
 
 const routes: Routes = [
   {
-    path: '',
+    path:'',
     component: RolesComponent,
     children: [
       {
